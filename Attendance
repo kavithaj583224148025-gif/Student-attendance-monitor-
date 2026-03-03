@@ -1,0 +1,38 @@
+students = {}
+
+def add_student(name):
+    students[name] = []
+
+def mark_attendance(name, status):
+    if name in students:
+        students[name].append(status)
+
+def attendance_report():
+    for name, records in students.items():
+        total = len(records)
+        present = records.count("P")
+        percentage = (present / total) * 100 if total > 0 else 0
+        print(f"{name} - {percentage:.2f}%")
+
+while True:
+    print("\n1. Add Student")
+    print("2. Mark Attendance")
+    print("3. View Report")
+    print("4. Exit")
+
+    choice = input("Enter choice: ")
+
+    if choice == "1":
+        name = input("Enter student name: ")
+        add_student(name)
+
+    elif choice == "2":
+        name = input("Enter student name: ")
+        status = input("Enter P for Present / A for Absent: ")
+        mark_attendance(name, status.upper())
+
+    elif choice == "3":
+        attendance_report()
+
+    elif choice == "4":
+        break
